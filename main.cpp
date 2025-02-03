@@ -1,7 +1,7 @@
-#include <iostream>
-#include <set>
-#include <vector>
-using namespace std;
+// #include <iostream>
+// #include <set>
+// #include <vector>
+// using namespace std;
 
 void codeforces143()
 {
@@ -207,7 +207,56 @@ void codeforcescp28_2b()
     }
 }
 
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
 int main()
 {
-    codeforcescp28_2b();
+    int range;
+    cin >> range;
+    for (int i = 0; i < range; i++)
+    {
+        int n, m;
+        cin >> n >> m;
+        vector<vector<int>> matrix(n, vector<int>(m));
+        for (int k = 0; k < n; k++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                cin >> matrix[i][j];
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            sort(matrix[i].begin(), matrix[i].end());
+        }
+        int foundRow, foundRow2 = -1; // -1 means not found
+        for (int i = 0; i < n; i++)
+        {
+            if (i == 0)
+            {
+                continue;
+            }
+            if (find(matrix[i].begin(), matrix[i].end(), target) != matrix[i].end())
+            {
+                foundRow = i;
+
+                break; // Exit the loop once the element is found
+            }
+            if (find(matrix[i - 1].begin(), matrix[i - 1].end(), target) != matrix[i - 1].end())
+            {
+                foundRow2 = i - 1;
+
+                break; // Exit the loop once the element is found
+            }
+            if (foundRow2 == foundRow)
+            {
+                cout << -1 << endl;
+            }
+        }
+    }
+
+    return 0;
 }
